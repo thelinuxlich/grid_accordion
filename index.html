@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<title>Exemplo Grid Accordion</title>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="jquery.animate-enhanced.js"></script>
+		<script type="text/javascript" src="knockout.js"></script>
+		<style>
+			#grid {
+				width: 1000px;
+				height: 800px;
+				border: 3px solid black;
+				position: relative;
+			}
+			#destaque {
+				width: 500px;
+				float: left;
+				height: 800px;
+			}
+			#item_1,#item_2,#item_3,#item_4 {
+				width: 250px;
+				height: 400px;
+				float: left;
+			}
+			#destaque img {
+				width: 500px;
+				height: 800px;
+			}
+			.item img {
+				width: 250px;
+				height: 400px;
+			}
+		</style>
+		<script type="text/javascript">
+			$(function(){
+				$(".item").live("click",function(){
+					var grid_cell = $(this);
+					var destaque = $("#destaque");
+					var img_destaque = $("#destaque img").attr("src");
+					var img_clicada = $(this).find("img");
+					var x = $(this).position().left;
+					var y = $(this).position().top;
+					img_clicada.animate({left: "-="+x+"px",top: "-="+y+"px",width: 500, height: 800},function() {
+						$(this).css({width: 250, height: 400});
+						destaque.find("img").attr("src",img_clicada.attr("src"));
+						$(this).attr("src",img_destaque);
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="grid">
+			<div id="destaque"><img src="img1.jpg" /></div>
+			<div id="item_1" class="item"><img src="img2.jpg" /></div>
+			<div id="item_2" class="item"><img src="img3.jpg" /></div>
+			<div id="item_3" class="item"><img src="img4.jpg" /></div>
+			<div id="item_4" class="item"><img src="img5.jpg" /></div>
+		</div>
+	</body>
+</html>
